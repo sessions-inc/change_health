@@ -15,6 +15,7 @@ module ChangeHealth
         property :receiver, required: false
         property :submitter, required: false
         property :subscriber, required: false
+        property :dependent, required: false
         property :headers, required: false
         # Need one or the other, trading partner id or trading partner service id
         property :tradingPartnerId, from: :trading_partner_id, required: false

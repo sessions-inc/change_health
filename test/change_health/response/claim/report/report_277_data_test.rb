@@ -27,7 +27,7 @@ class Report277DataTest < Minitest::Test
         let(:actual_claim) { report_data.claims.first }
         info_claim_status = ChangeHealth::Response::Claim::Report277InfoClaimStatus.new(
           message: 'BILLING NPI IS NOT AUTHORIZED FOR TAX ID',
-          status_category_codes: ['F1'],
+          status_category_codes: [{ status_category_code: "F1", status_category_code_value: "Finalized/Payment-The claim/line has been paid.", status_code: "65", status_code_value: "Claim/line has been paid.", entity_identifier_code: nil, entity_identifier_code_value: nil }],
           status_information_effective_date: Date.new(2020, 6, 13),
           total_charge_amount: '100'
         )
@@ -78,7 +78,7 @@ class Report277DataTest < Minitest::Test
         let(:short_actual_claim) { short_report_data.claims.first }
 
         info_claim_status = ChangeHealth::Response::Claim::Report277InfoClaimStatus.new(
-          status_category_codes: ['E1'],
+          status_category_codes: [{ status_category_code: "E1", status_category_code_value: "Response not possible - System Status", status_code: "689", status_code_value: "Entity was unable to respond within the expected time frame. Usage: This code requires use of an Entity Code.", entity_identifier_code: "ZZ", entity_identifier_code_value: "Mutually Defined" }],
           status_information_effective_date: Date.new(2020, 1, 7),
           total_charge_amount: nil
         )
@@ -144,8 +144,8 @@ class Report277DataTest < Minitest::Test
         end
 
         it 'status category codes' do
-          assert_equal %w[F1 F2 F1], complex_report_data.claims[0].latest_status_category_codes
-          assert_equal %w[A6 A7 D0], complex_report_data.claims[1].latest_status_category_codes
+          assert_equal %w[F1 F2 F1], complex_report_data.claims[0].latest_status_category_codes.map { |code| code[:status_category_code] }
+          assert_equal %w[A6 A7 D0], complex_report_data.claims[1].latest_status_category_codes.map { |code| code[:status_category_code] }
         end
       end
     end

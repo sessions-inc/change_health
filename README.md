@@ -230,21 +230,21 @@ report_headers = {
   password: 'WeInfuse1'
 }
 
-report_list = ChangeHealth::Request::Claim::Report.report_list(headers: report_headers)
+report_list = ChangeHealth::Request::Claim::Report.list(headers: report_headers)
 
 report_list.report_names
 # ["X3000000.XX", "R5000000.XY", "R5000000.XX", "X3000000.AB", "X3000000.AC", "X3000000.ZZ", "R5000000.XZ", "R5000000.YZ", "R5000000.WA", "R5000000.WB", "R5000000.WC"]
 
-report0_edi = ChangeHealth::Request::Claim::Report.get_report(report_list.report_names.first, as_json_report: false)
+report0_edi = ChangeHealth::Request::Claim::Report.retrieve(report_list.report_names.first, json: false)
 # Report in edi format
 
-report0_json = ChangeHealth::Request::Claim::Report.get_report(report_list.report_names.first, as_json_report: true)
+report0_json = ChangeHealth::Request::Claim::Report.retrieve(report_list.report_names.first, json: true)
 # Report in json format
 
-reports_json = report_list.report_names.map {|report_name| ChangeHealth::Request::Claim::Report.get_report(report_name, headers: report_headers)}
+reports_json = report_list.report_names.map {|report_name| ChangeHealth::Request::Claim::Report.retrieve(report_name, headers: report_headers)}
 # all reports in json format
 
-reports_edi = report_list.report_names.map {|report_name| ChangeHealth::Request::Claim::Report.get_report(report_name, as_json_report: false, headers: report_headers)}
+reports_edi = report_list.report_names.map {|report_name| ChangeHealth::Request::Claim::Report.retrieve(report_name, json: false, headers: report_headers)}
 # all reports in edi format
 ```
 
@@ -256,7 +256,7 @@ From a report, you can get an array of claims
 #### Report 277
 
 ```ruby
-report277_data = ChangeHealth::Request::Claim::Report.get_report("X3000000.AB", as_json_report: true)
+report_277_data = ChangeHealth::Request::Claim::Report.retrieve("X3000000.AB", json: true)
 
 report277_data.payer_name
 # "PREMERA"
@@ -291,7 +291,7 @@ claim277.procedure_codes
 #### Report 835
 
 ```ruby
-report835_data = ChangeHealth::Request::Claim::Report.get_report("R5000000.XY", as_json_report: true)
+report_835_data = ChangeHealth::Request::Claim::Report.retrieve("R5000000.XY", json: true)
 
 payment835 = report835_data.payments.first
 

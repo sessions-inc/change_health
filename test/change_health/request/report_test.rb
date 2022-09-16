@@ -25,7 +25,7 @@ class ReportTest < Minitest::Test
       before do
         stub_change_health(endpoint: report_list_endpoint, response: response, verb: :get)
 
-        @report_list_data = claim_report.report_list(headers: report_headers)
+        @report_list_data = claim_report.list(headers: report_headers)
       end
 
       it 'calls report list' do
@@ -46,7 +46,7 @@ class ReportTest < Minitest::Test
         before do
           stub_change_health(endpoint: report_list_endpoint, response: response, verb: :get)
 
-          @report_data = claim_report.get_report(report_name, headers: report_headers)
+          @report_data = claim_report.retrieve(report_name, headers: report_headers)
         end
 
         it 'calls report' do
@@ -61,6 +61,7 @@ class ReportTest < Minitest::Test
           assert @report_data.is_a? ChangeHealth::Response::Claim::Report835Data
         end
       end
+
       describe 'edi report' do
         let(:report_name) { 'R5000000.XY' }
         let(:response) { build_response(file: "claim/report/report.#{report_name}.edi.response.json") }
@@ -69,7 +70,7 @@ class ReportTest < Minitest::Test
         before do
           stub_change_health(endpoint: report_list_endpoint, response: response, verb: :get)
 
-          @report_data = claim_report.get_report(report_name, as_json_report: false, headers: report_headers)
+          @report_data = claim_report.retrieve(report_name, json: false, headers: report_headers)
         end
 
         it 'calls report' do

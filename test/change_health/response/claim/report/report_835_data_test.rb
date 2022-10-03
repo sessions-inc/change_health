@@ -73,11 +73,13 @@ class Report835DataTest < Minitest::Test
         service_adjustments = []
         service_adjustments << ChangeHealth::Response::Claim::Report835ServiceAdjustment.new(
           adjustments: { '45' => '1685.95', '253' => '29.7' },
-          claim_adjustment_group_code: 'CO'
+          claim_adjustment_group_code: 'CO',
+          claim_adjustment_group_code_value: 'Contractual Obligations'
         )
         service_adjustments << ChangeHealth::Response::Claim::Report835ServiceAdjustment.new(
           adjustments: { '1' => '57.54', '2' => '371.3' },
-          claim_adjustment_group_code: 'PR'
+          claim_adjustment_group_code: 'PR',
+          claim_adjustment_group_code_value: 'Patient Responsibility'
         )
 
         health_care_check_remark_codes = [ChangeHealth::Response::Claim::Report835HealthCareCheckRemarkCode.new(

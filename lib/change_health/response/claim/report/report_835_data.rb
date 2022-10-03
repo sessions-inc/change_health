@@ -98,9 +98,10 @@ module ChangeHealth
                   line_item_provider_payment_amount = service_line.dig('servicePaymentInformation',
                                                                        'lineItemProviderPaymentAmount')
 
-                  service_adjustments = service_line['serviceAdjustments']&.map do |service_adjustment|
+                  service_adjustments = service_line["serviceAdjustments"]&.map do |service_adjustment|
                     adjustments = {}
                     service_adjustment_index = 1
+
                     while service_adjustment["adjustmentReasonCode#{service_adjustment_index}"]
                       adjustment_reason = service_adjustment["adjustmentReasonCode#{service_adjustment_index}"]
                       adjustment_amount = service_adjustment["adjustmentAmount#{service_adjustment_index}"]
@@ -108,11 +109,10 @@ module ChangeHealth
                       service_adjustment_index += 1
                     end
 
-                    claim_adjustment_group_code = service_adjustment['claimAdjustmentGroupCode']
-
                     Report835ServiceAdjustment.new(
                       adjustments: adjustments,
-                      claim_adjustment_group_code: claim_adjustment_group_code
+                      claim_adjustment_group_code: service_adjustment["claimAdjustmentGroupCode"],
+                      claim_adjustment_group_code_value: service_adjustment["claimAdjustmentGroupCodeValue"]
                     )
                   end
 
@@ -130,7 +130,8 @@ module ChangeHealth
                     line_item_charge_amount: line_item_charge_amount,
                     line_item_provider_payment_amount: line_item_provider_payment_amount,
                     service_adjustments: service_adjustments,
-                    health_care_check_remark_codes: health_care_check_remark_codes
+                    health_care_check_remark_codes: health_care_check_remark_codes,
+                    service_date: service_line_date
                   )
                 end
 

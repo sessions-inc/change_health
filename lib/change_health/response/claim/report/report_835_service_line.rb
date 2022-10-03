@@ -8,6 +8,7 @@ module ChangeHealth
         property :line_item_charge_amount, required: false
         property :line_item_provider_payment_amount, required: false
         property :service_adjustments, required: false
+        property :service_date, required: false
 
         def create_group_adjustments(service_adjustments)
           adjustment_array = service_adjustments[:adjustments].map do |key, value|

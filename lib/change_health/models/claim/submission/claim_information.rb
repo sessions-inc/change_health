@@ -11,6 +11,7 @@ module ChangeHealth
         property :patientControlNumber, from: :patient_control_number, required: false
         property :placeOfServiceCode, from: :place_of_service_code, required: false
         property :planParticipationCode, from: :plan_participation_code, required: false
+        property :propertyCasualtyClaimNumber, from: :property_casualty_claim_number, required: false
         property :releaseInformationCode, from: :release_information_code, required: false
         property :serviceFacilityLocation, from: :service_facility_location, required: false
         property :serviceLines, from: :service_lines, required: false

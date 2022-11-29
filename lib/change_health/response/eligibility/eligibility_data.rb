@@ -35,8 +35,9 @@ module ChangeHealth
       alias_method :service_date, :service
 
       def plan_date_range
-        pd = self.date_info&.dig('plan') || ''
-        pd.split('-')
+        plan_date = self.date_info&.dig("plan")
+        plan_date ||= self.date_info["planBegin"] if self.date_info["planBegin"].to_s =~ /-/
+        (plan_date || "").split('-')
       end
 
       def plan_date_range_start

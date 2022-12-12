@@ -36,7 +36,7 @@ module ChangeHealth
 
       def plan_date_range
         plan_date = self.date_info&.dig("plan")
-        plan_date ||= self.date_info["planBegin"] if self.date_info["planBegin"].to_s =~ /-/
+        plan_date ||= self.date_info["planBegin"] if self.date_info.present? && self.date_info["planBegin"].to_s =~ /-/
         (plan_date || "").split('-')
       end
 

@@ -4,11 +4,12 @@ module ChangeHealth
       include Hashie::Extensions::MergeInitializer
       include Hashie::Extensions::IndifferentAccess
 
-      OUT_OF_POCKET = 'G'
-      COPAYMENT     = 'B'
-      COINSURANCE   = 'A'
-      NON_COVERED   = 'I'
-      DEDUCTIBLE    = 'C'
+      OUT_OF_POCKET = "G"
+      COPAYMENT     = "B"
+      COINSURANCE   = "A"
+      NON_COVERED   = "I"
+      DEDUCTIBLE    = "C"
+      LIMITATIONS   = ""
 
       INDIVIDUAL    = 'IND'
       CHILD         = 'CHD'

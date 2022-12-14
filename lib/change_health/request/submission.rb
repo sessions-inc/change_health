@@ -10,6 +10,7 @@ module ChangeHealth
         property :claimInformation, from: :claim_information, required: false
         property :controlNumber, from: :control_number, required: true, default: ChangeHealth::Models::CONTROL_NUMBER
         property :dependent, required: false
+        property :payerAddress, from: :payer_address, required: false
         property :payToAddress, from: :pay_to_address, required: false
         property :providers, required: false
         property :receiver, required: false
@@ -17,6 +18,7 @@ module ChangeHealth
         property :subscriber, required: false
         property :dependent, required: false
         property :headers, required: false
+        property :tradingPartnerName, from: :trading_partner_name, required: false
         # Need one or the other, trading partner id or trading partner service id
         property :tradingPartnerId, from: :trading_partner_id, required: false
         property :tradingPartnerServiceId, from: :trading_partner_service_id, required: false

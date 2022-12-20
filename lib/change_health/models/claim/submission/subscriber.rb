@@ -10,6 +10,7 @@ module ChangeHealth
         property :lastName, from: :last_name, required: false
         property :memberId, from: :member_id, required: false
         property :paymentResponsibilityLevelCode, from: :payment_responsibility_level_code, required: false
+        property :subscriberGroupName, from: :subscriber_group_name, required: false
       end
     end
   end

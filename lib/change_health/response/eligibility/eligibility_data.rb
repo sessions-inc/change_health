@@ -1,11 +1,14 @@
+require 'forwardable'
+
 module ChangeHealth
   module Response
     class EligibilityData < ChangeHealth::Response::ResponseData
+      extend Forwardable
 
       ACTIVE = '1'
       INACTIVE = '6'
 
-      delegate :dig, to: :raw
+      def_delegators :raw, :dig
 
       def active?(service_code: '30')
         plan_status(service_code: service_code, single: false).any? {|status| ACTIVE == status['statusCode'] }

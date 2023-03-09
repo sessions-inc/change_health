@@ -16,7 +16,7 @@ module ChangeHealth
         end
 
         def self.retrieve(report_name, json: true, headers: nil)
-          return if report_name.blank?
+          return if report_name.empty?
 
           report_type = ChangeHealth::Response::Claim::ReportData.report_type(report_name)
 

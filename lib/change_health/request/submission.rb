@@ -12,7 +12,11 @@ module ChangeHealth
         property :dependent, required: false
         property :payerAddress, from: :payer_address, required: false
         property :payToAddress, from: :pay_to_address, required: false
-        property :providers, required: false
+        property :providers, required: false # Deprecated
+        property :billing, required: false
+        property :rendering, required: false
+        property :referring, required: false
+        property :supervising, required: false
         property :receiver, required: false
         property :submitter, required: false
         property :subscriber, required: false

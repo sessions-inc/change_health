@@ -19,6 +19,8 @@ module ChangeHealth
         property :otherSubscriberInformation, from: :other_subscriber_information, required: false
         property :claimNote, from: :claim_note, required: false
         property :relatedCausesCode, from: :related_causes_code
+        property :autoAccidentStateCode, from: :auto_accident_state_code
+        property :claimDateInformation, from: :claim_date_information
 
         def add_service_line(service_line)
           self[:serviceLines] ||= []

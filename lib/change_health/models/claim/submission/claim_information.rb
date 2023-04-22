@@ -18,6 +18,7 @@ module ChangeHealth
         property :signatureIndicator, from: :signature_indicator, required: false
         property :otherSubscriberInformation, from: :other_subscriber_information, required: false
         property :claimNote, from: :claim_note, required: false
+        property :relatedCausesCode, from: :related_causes_code
 
         def add_service_line(service_line)
           self[:serviceLines] ||= []

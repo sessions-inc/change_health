@@ -8,7 +8,7 @@ module ChangeHealth
       property :dependents, required: false
       property :encounter, required: false
       property :informationReceiverName, from: :information_receiver_name, required: false
-      property :partnerId, from: :partner_id, default: true
+      property :partnerId, from: :partner_id, required: false
       property :portalPassword, from: :portal_password, required: false
       property :portalUsername, from: :portal_username, required: false
       property :provider, required: false

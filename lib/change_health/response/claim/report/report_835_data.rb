@@ -83,6 +83,8 @@ module ChangeHealth
                 service_date_end = nil
                 service_lines = payment_info['serviceLines']&.map do |service_line|
                   service_line_date = ChangeHealth::Models::PARSE_DATE.call(service_line['serviceDate'])
+                  service_line_date ||= ChangeHealth::Models::PARSE_DATE.call(service_line["serviceStartDate"])
+
                   unless service_line_date.nil?
                     if service_date_begin.nil? || service_line_date < service_date_begin
                       service_date_begin = service_line_date

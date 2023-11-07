@@ -8,7 +8,7 @@ module ChangeHealth
     include HTTParty
 
     base_uri QA_ENDPOINT
-
+    read_timeout 120
     headers 'Content-Type' => 'application/json;charset=UTF-8'
 
     format :json

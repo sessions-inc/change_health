@@ -34,7 +34,7 @@ module ChangeHealth
       end
 
       def represents_down?
-        (field == DOWN_FIELD && description == DOWN_MESSAGE) || !!(description.to_s =~ /please try again later/)
+        (field == DOWN_FIELD && description == DOWN_MESSAGE) || !!(description.to_s =~ /please try again later/i)
       end
 
       def retryable?
